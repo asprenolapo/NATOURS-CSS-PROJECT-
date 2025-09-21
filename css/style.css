@@ -1,0 +1,39 @@
+/* 
+COLORS:
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+ */
+
+/* usiamo un selettore universale e settiamo anticipatamente le misure della pagina tramitye un selettore universale  */
+*{
+    margin: 0;
+    padding: 0;
+    /* meglio portare a zero margin e padding poichè alcuni browser in automatico aggiungono margin e padding
+    un H1 avrà naturalmente un suo margin e padding per questop impostiamo tutto a zero */
+    box-sizing: border-box;
+    /* ci permette di evitare l'aggiunta di bordi o padding ai nostri elementi  */
+
+}
+
+/* usiamo il selettore per elemento al fine di far erditare agli elementi all'interno le caratteristiche da noi decise.  */
+body {
+font-family: "Lato", sans-serif ;
+font-weight: 400;
+font-size: 16px;
+line-height: 1.7;
+color: #777;
+padding: 30px;
+}
+
+/* tramite il selettore di classe iniziamo a creare il nostro elmento header */
+.header{
+    height: 95vh;
+    background-image: linear-gradient(to right bottom,
+    rgba(126, 213, 111, 0.8), 
+    rgba(40, 180, 131, 0.8)), 
+    url(../img/hero.jpg);
+    background-size: cover;
+    background-position: top;
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
