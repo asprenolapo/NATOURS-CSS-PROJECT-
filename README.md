@@ -1,1 +1,137 @@
 # NATOURS-CSS-PROJECT-
+
+SETTINGS DI BASE 
+
+/* usiamo un selettore universale e settiamo anticipatamente le misure della pagina tramitye un selettore universale  */
+*{
+    margin: 0;
+    padding: 0;
+    /* meglio portare a zero margin e padding poichè alcuni browser in automatico aggiungono margin e padding
+    un H1 avrà naturalmente un suo margin e padding per questop impostiamo tutto a zero */
+    box-sizing: border-box;
+    /* ci permette di evitare l'aggiunta di bordi o padding ai nostri elementi  Approfondire argomento*/
+
+}
+
+/* usiamo il selettore per elemento al fine di far erditare agli elementi all'interno le caratteristiche da noi decise.  */
+body {
+font-family: "Lato", sans-serif ;
+font-weight: 400;
+font-size: 16px;
+line-height: 1.7;
+color: #777;
+padding: 30px;
+}
+
+/* tramite il selettore di classe iniziamo a creare il nostro elmento header*/
+.header{
+    height: 95vh;
+    background-image: linear-gradient(to right bottom,
+    rgba(126, 213, 111, 0.8), 
+    rgba(40, 180, 131, 0.8)), 
+    url(../img/hero.jpg);
+    background-size: cover;
+    background-position: top;
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    Approfondire l'uso del clip-path!
+}
+--------------------------------------------------------------------------------------
+
+PRIMA PARTE E SECONDA PARTE HERO SECTION + LOGO + ANIMAZIONI
+
+/* LOGO */
+
+/* andiamo a lavorare sul div con classe logo-box al fine di posizionarlo dove vogliamo alll'interno della pagina */
+.logo-box{
+ position: absolute;
+ top: 40px;
+ left: 40px;
+
+}
+
+/* lavoriamo direttamente sull'elemento img tramite classe  */
+.logo{
+height: 35px;
+
+}
+
+/* TEXT-BOX + TITOLO H1 + SPAN */
+
+/* per gestire al meglio tutti gli elementi abbiamo racchiuso h1 all'interno di una box che potremo posizionare in modo responsive al centro della nostra hero section  */
+.text-box{
+position: absolute;
+top: 40%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+/* tramite selettore di classe impostiamo il colore del testo e la sua transformazione in maiuscolo */
+.heading-primary{
+color: #fff;
+text-transform: uppercase;
+/* ci permette di determinare se il back di un elemento quando viene trasformato sia visibile o meno all'utente. Permettendo anche di eleminare eventuali movimenti traballanti delle animazioni */
+backface-visibility: hidden;
+}
+/* aggiungiamo display:block per gestire al meglio gli elementi e settiamo dimensione, peso e spazziatura dei caratteri */
+.heading-primary-main{
+    display: block;
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: 35px;
+    
+    /* richiamo l'animazione creata tramite @keyframe */
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    /* ulteriori customizzazzioni per l'animazione */
+    /* animation-delay: 3s;
+    animation-iteration-count: 3s;
+    animation-timing-function: ease-out; */
+
+}
+/* come per il main */
+.heading-primary-sub{
+
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 19px;
+/*richiamo l'animazione + shortcut: raccogliere in un riga il codice dell'animazione  */
+    animation: moveInRight 1s ease-out;
+}
+
+/* ANIMAZIONI HERO SECTION */
+
+/* I animazione per .heading-primary-main */
+@keyframes moveInLeft{
+    0%{
+    opacity: 0;
+    transform: translateX(-100px);
+    }
+
+    80%{
+    transform: translateX(10px);
+    }
+
+    100%{
+    opacity: 1;
+    transform: translate(0);
+    }
+}
+/* II animazione per .heading-primary-sub */
+@keyframes moveInRight{
+    0%{
+    opacity: 0;
+    transform: translateX(100px);
+    }
+
+    80%{
+    transform: translateX(-10px);
+    }
+
+    100%{
+    opacity: 1;
+    transform: translate(0);
+    }
+}
+--------------------------------------------------------------------------------------------
