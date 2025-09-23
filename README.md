@@ -135,3 +135,102 @@ backface-visibility: hidden;
     }
 }
 --------------------------------------------------------------------------------------------
+/* III animazione per .btn-white */
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+/* BUTTON */
+
+/* abbiamo dato all'a(ancor) due classi 
+btn(per tutte quelle impostaioni che riguarderanno anche gli altri tasti presenti nella pagina) 
+btn-white(per le caratteristiche di questo bottone e di quelli che saranno bianchi). 
+usiamo un a(ancor) per poter poi utilizzare il bottone per essere riportati ad una deteminata parte della pagina.
+pseudo-classe :link(le pseudo classi sono uno stato speciale di un selettore) 
+per poter crerare un bottone con condizioni speciali.
+pseudo-classe :visited ci permettera all'attivazione di un link o 
+un pulsante di avere un cmabiamento di stato che ricorderà all'utente che è gia stato clickato
+possiamo unire le pseudoclassi come in questo caso con la virgola */
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    /* shortcut padding:  desciviamo due valori(e non 4) uno per dall'alto verso il basso e uno da sinistra verso destra*/
+    display: inline-block;
+    /*La display: inline-block proprietà combina le caratteristiche degli elementi in linea e di quelli a blocchi
+un elemento con display: inline-block apparirà sulla stessa riga di altri elementi inline o inline-block 
+inoltre, è possibile impostare le proprietà width, height, e per l'elemento (come gli elementi block) margin-top margin-bottom*/
+    border-radius: 100px;
+    transition: all 0.2s;
+    /*Per creare un effetto di transizione, 
+    è necessario specificare la proprietà CSS a cui si desidera aggiungere una transizione e la durata della transizione
+    in questo caso noi abbiamo selezionato all per abilitare tutte le porpietà per essere animate
+    e un timing di 0.2s*/
+    position: relative;
+    /*rendendo l'elemento relativo gestiamo al meglio il posizionamento 
+    del nostro pseudo-elemento .btn::after e le sue propietà(es.postion:absolute; top: 0; lft: 0; z-inde: -1; )*/
+}
+
+/* gestiamo un ulteriore pseudo-classe l'hover */
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgb(0, 0, 0, 0.2);
+}
+
+/* pseudo-classe :active */
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgb(0, 0, 0, 0.2);
+}
+
+/*gestiamo il colore di fondo e il colore del testo del bottone bianco*/
+.btn-white {
+    background-color: #fff;
+    color: #777;
+}
+
+/* useremo adesso gli pseudo-elementi
+gli pseudo-elementi ci permettono di disegnare alcune parti degli elementi selezionati. 
+una volta selezionato l'elemento lo pseudo-elmento che aggiungiamo diventa come un elemento virtuale
+questo ci permette di modellare questa parte virtuale
+per rendere visualizzabile uno pseudo elmento dobbiamo prima specificare la sua porpietà content*/
+.btn::after {
+    content: "";
+    /*contenuto vuoto ma specificato*/
+    display: inline-block; /*la stessa propietà assegnata al btn*/
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    /*ricordiamo che il posizionamento assoluto ha sempre bisogno di un riferimento
+     in questo caso top e left dell'elemento con posizione relativa che può trovare
+     in questo caso però il contenitore che noi vogliamo sia relativo non è l'header ma il nostro btn*/
+    top: 0;
+    left: 0;
+    z-index: -1; /*ci permette di nascondere lo pseudo-elemento dietro l'elemento reale*/
+    transition: all 0.4s;
+}
+/*definiamo il colore di background dello pseudo-elemento*/
+.btn-white::after {
+    background-color: #fff;
+}
+/*avviamo il transform dello pseudo-elemento quando parte l'hover
+in questo modo la pseudo-classe hover gestirà al suo evento lo pseudo-elemento*/
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.btn-animated {
+    animation: moveInBottom 0.5s ease-out 0.3s;
+    animation-fill-mode: backwards; /*commentare*/
+}
